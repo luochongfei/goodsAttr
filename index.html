@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul{
+            list-style: none;
+        }
+        li{
+            margin: 20px 0;
+        }
+        ul a{
+            display:inline-block;
+            padding: 5px 30px;
+            border: 1px solid #ddd;
+            color:#333;
+            text-decoration: none;
+        }
+        ul a:hover,ul a.active{
+            background: #09a;
+            color:#fff;
+            border-color:#09a;
+        }
+    </style>
+    <script src="http://7.luochongfei.top/jquery.js"></script>
+</head>
+<body>
+    <script src="props.js"></script>
+    <ul id="wrap">
+        <li>
+            <a href="javascript:;" data-prime="2" class="active">26</a>
+            <a href="javascript:;" data-prime="3">28</a>
+        </li>
+        <li>
+            <a href="javascript:;" data-prime="5" class="active">PINK</a>
+            <a href="javascript:;" data-prime="7">PURPLE</a>
+            <a href="javascript:;" data-prime="11">WHITE</a>
+        </li>
+    </ul>
+    <div id="img">
+        <img src="" alt="">
+    </div>
+    <h2 id="title"></h2>
+    <script>
+        let $actives = $('#wrap').find('.active');
+        let tempRes = 1;
+        $actives.each(function(index, item){
+            tempRes *= $(item).data('prime');
+        });
+        console.log(tempRes);
+        let idx = 0;
+        props.goods_list.some((element, index) => {
+            idx = index;
+            return element.product_number == tempRes;
+        });
+
+        showInfo(props.goods_list[idx]);
+        
+        function showInfo(obj) {
+            $('#img').find('img').attr('src', obj.goods_img);
+            $('#title').html(obj.goods_title);
+        }
+    </script>
+</body>
+</html>
