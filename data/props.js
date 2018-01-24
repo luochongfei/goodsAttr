@@ -88,6 +88,38 @@ var props = {
             "goods_img": "https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/10/24/goods-img/1508818694383984637.jpg",
             "stock": 1,
             "price": "20.53"
+        },
+        {
+            "product_number": 130,
+            "goods_id": "1034778",
+            "goods_title": "中华人民共和国",
+            "goods_img": "https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/10/24/goods-img/1508818694383984637.jpg",
+            "stock": 1,
+            "price": "20.53"
+        },
+        {
+            "product_number": 255,
+            "goods_id": "1034778",
+            "goods_title": "美国28white",
+            "goods_img": "https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/10/24/goods-img/1508818694383984637.jpg",
+            "stock": 1,
+            "price": "20.53"
+        },
+        {
+            "product_number": 357,
+            "goods_id": "1034778",
+            "goods_title": "美国28pink",
+            "goods_img": "https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/10/24/goods-img/1508818694383984637.jpg",
+            "stock": 1,
+            "price": "20.53"
+        },
+        {
+            "product_number": 273,
+            "goods_id": "1034778",
+            "goods_title": "28pink中国",
+            "goods_img": "https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2017/10/24/goods-img/1508818694383984637.jpg",
+            "stock": 1,
+            "price": "20.53"
         }
     ],
     "prime_list": {

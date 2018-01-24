@@ -6,63 +6,159 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        ul{
-            list-style: none;
-        }
-        li{
+        .container{display: flex; justify-content: space-around; margin-bottom: 50px;}
+        .col{flex-basis: 45%; flex-shrink: 0;}
+        ul{list-style: none;margin: 0; padding: 0;}
+
+
+        .attr-row{
+            padding-left: 90px;
             margin: 20px 0;
+            font-size: 0;
         }
-        ul a{
+        .attr-row label {
+            margin-left: -90px;
+            width:90px;
             display:inline-block;
+            vertical-align: baseline;
+            font-size: 16px;
+            color:#999;
+        }
+        [data-prime]{
+            display:inline-block;
+            vertical-align: baseline;
+            margin: 0 10px 10px 0;
             padding: 5px 30px;
             border: 1px solid #ddd;
             color:#333;
             text-decoration: none;
+            cursor: pointer;
+            font-size: 16px;
         }
-        ul a:hover,ul a.active{
+        [data-prime]:hover{
+            border-color:#09a;
+            color:#09a;
+        }
+        [data-prime].disabled{
+            background: #eee;
+            color:#999;
+            border-color:#ccc;
+            cursor: default;
+        }
+        [data-prime].active{
             background: #09a;
             color:#fff;
             border-color:#09a;
         }
     </style>
-    <script src="http://7.luochongfei.top/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="goodsAttr.js"></script>
 </head>
 <body>
-    <script src="props.js"></script>
-    <ul id="wrap">
-        <li>
-            <a href="javascript:;" data-prime="2" class="active">26</a>
-            <a href="javascript:;" data-prime="3">28</a>
-        </li>
-        <li>
-            <a href="javascript:;" data-prime="5" class="active">PINK</a>
-            <a href="javascript:;" data-prime="7">PURPLE</a>
-            <a href="javascript:;" data-prime="11">WHITE</a>
-        </li>
-    </ul>
-    <div id="img">
-        <img src="" alt="">
+    <h2>3项属性</h2>
+    <script src="data/props.js"></script>
+    <div class="container">
+        <ul class="col" id="wrap1">
+            <li class="attr-row">
+                <label>Size: </label>
+                <a href="javascript:;" data-prime="2">26</a>
+                <a href="javascript:;" data-prime="3" class="active">28</a>
+            </li>
+            <li class="attr-row">
+                <label>Color: </label>
+                <a href="javascript:;" data-prime="7" class="active">PINK</a>
+                <a href="javascript:;" data-prime="11">PURPLE</a>
+                <a href="javascript:;" data-prime="5">WHITE</a>
+            </li>
+            <li class="attr-row">
+                <label>Country: </label>
+                <a href="javascript:;" data-prime="13">中国</a>
+                <a href="javascript:;" data-prime="17" class="active">美国</a>
+            </li>
+        </ul>
+        <div class="col">
+            <div id="img">
+                <img src="" alt="" width="60" height="60">
+            </div>
+            <h2 id="title"></h2>
+            <div id="price"></div>
+        </div>
     </div>
-    <h2 id="title"></h2>
     <script>
-        let $actives = $('#wrap').find('.active');
-        let tempRes = 1;
-        $actives.each(function(index, item){
-            tempRes *= $(item).data('prime');
+        const goodsAttr1 = new GoodsAttr({
+            jqWrap: $('#wrap1'),
+            goodsList: props.goods_list,
+            success(product) {
+                $('#img').find('img').attr('src', product.goods_img);
+                $('#title').html(product.goods_title);
+                $('#price').html(product.price * 7.87738);
+            }
         });
-        console.log(tempRes);
-        let idx = 0;
-        props.goods_list.some((element, index) => {
-            idx = index;
-            return element.product_number == tempRes;
+    </script>
+
+    <h2>模拟新窗口打开</h2>
+    <script src="data/props2.js"></script>
+    <div class="container">
+        <div class="col" id="wrap2">
+            <ul id="attr_7" class="attr-row">
+                <label>Size: </label>
+                <li data-prime="13">GLOBAL 4GB+128GB</li>
+                <li data-prime="11">GLOBAL 4GB+64GB</li>
+                <li data-prime="5">HK WAREHOUSE 4GB+128GB</li>
+                <li data-prime="7">HK WAREHOUSE 4GB+64GB</li>
+                <li data-prime="2">INTERNATIONAL 4GB+128GB</li>
+                <li data-prime="3" class="active">INTERNATIONAL 4GB+64GB</li>
+            </ul>
+            <ul id="attr_8" class="attr-row">
+                <label>Color: </label>
+                <li data-prime="29">BLACK</li>
+                <li data-prime="17">GOLDEN</li>
+                <li data-prime="23" class="active">GRAY</li>
+                <li data-prime="19">SILVER</li>
+            </ul>
+        </div>
+        <div class="col">
+            <iframe src="" frameborder="0" id="iframe2" width="400" height="400" style="border:1px solid #ddd;"></iframe>
+        </div>
+    </div>
+
+
+    <h2>单个商品</h2>
+    <script>
+
+        const goodsAttr2 = new GoodsAttr({
+            jqWrap: $('#wrap2'),
+            goodsList: props2.goods_list,
+            success(product) {
+                console.info(product);
+                document.querySelector('#iframe2').src= product.goods_img;
+            }
         });
 
-        showInfo(props.goods_list[idx]);
-        
-        function showInfo(obj) {
-            $('#img').find('img').attr('src', obj.goods_img);
-            $('#title').html(obj.goods_title);
-        }
+    </script><hr>
+    <script src="data/props3.js"></script>
+    <div class="container">
+        <ul class="col" id="wrap3">
+            <li class="attr-row">
+                <label>Color: </label>
+                <a data-prime="2" class="active">WHITE</a>
+            </li>
+        </ul>
+        <div class="col">
+            <img id="img3" width="100" height="100" style="border:1px solid #ddd;"></iframe>
+        </div>
+    </div>
+    <script>
+
+        const goodsAttr3 = new GoodsAttr({
+            jqWrap: $('#wrap3'),
+            goodsList: props3.goods_list,
+            success(product) {
+                console.info(product);
+                document.querySelector('#img3').src = product.goods_img;
+            }
+        });
+
     </script>
 </body>
 </html>
