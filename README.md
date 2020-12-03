@@ -2,4 +2,5 @@
 
 
 ## [演示地址](https://luochongfei.github.io/goodsAttr/)
-![GitHub](images/three_attrs.jpg "演示图")
+![商品多规格属性](images/three_attrs.jpg "商品多规格属性")
+![商品多规格属性](images/demo2.jpg "商品多规格属性")
